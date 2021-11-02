@@ -1,18 +1,15 @@
 #import dependencies
-    #termcolor / matplotlib / pygame?
+    #matplotlib?
 
-#Draw Method
-import functions.graphics as graphics
-
-#check for win method
-import functions.checks as checks
+#Create game board class
+import functions.game as game
 
 #Ai method
 import functions.ai as ai
 
 
 #Game engine (main program)
-    #create a game board (2d array)
+    #create a game object
 
     #take in game parameters
 

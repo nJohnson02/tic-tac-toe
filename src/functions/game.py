@@ -2,7 +2,8 @@
     #termcolor / pygame?
 
 class Game:
-    board = [[],[],[]]
+    def __init__(self):
+        self.board = [[],[],[]]
 
     def checkForWin(self):
         pass

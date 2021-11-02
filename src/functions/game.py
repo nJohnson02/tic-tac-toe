@@ -1,11 +1,14 @@
 #import dependencies
     #termcolor / pygame?
 
-class game:
+class Game:
     board = [[],[],[]]
 
-    def checkForWin():
+    def checkForWin(self):
         pass
     
-    def draw():
+    def draw(self):
         pass
+
+    def test(self):
+        print('yes')

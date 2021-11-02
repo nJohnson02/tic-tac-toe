@@ -1,3 +1,6 @@
+#import dependencies
+    #termcolor / matplotlib / pygame?
+
 #Draw Method
 
 #check for win method

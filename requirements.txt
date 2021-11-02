@@ -1,0 +1,32 @@
+Comment at the top of the program including: Project Title, Group Member Names, Description of Program.
+yes
+
+ Appropriate Variable Names.
+use lowercase for normal, uppercase for static variables
+
+ Must use at least one if statement.
+check for win
+
+ Must use at least one while/for loop (Optional: Use at least one of both).
+main loop / iterate through board to check for win
+
+ The program must contain at least one function
+yes
+
+ Correct importation of needed modules
+yes
+
+ Must use matplotlib to create some sort of graphic
+bruh :c, i guess we could graph the users skill change over time or something?
+
+ Must use file I/O functionality to either read from a file or write to a file.
+BRUH, i guess we could make a parameters.txt or something?
+
+ Demonstration of outside research with the use of a concept or functionality not taught in class.
+2d arrays / classes and objects
+
+ Include comments to describe sections of code, their logic, and their functionality
+yes yes yes yes yes yes
+
+ Must not include any pre-written code, or code that has been copied from the internet.
+0_o

@@ -1,4 +1,4 @@
-Comment at the top of the program including: Project Title, Group Member Names, Description of Program.
+ Comment at the top of the program including: Project Title, Group Member Names, Description of Program.
 yes
 
  Appropriate Variable Names.

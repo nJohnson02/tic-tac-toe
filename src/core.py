@@ -1,10 +1,8 @@
 #import dependencies
     #matplotlib?
 
-#Create game board class
+#Import the other project filess
 import functions.game as gameModule
-
-#Ai method
 import functions.ai as aiModule
 
 

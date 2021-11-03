@@ -1,18 +1,19 @@
+#Import dependencies
 import os
-#import dependencies
-    #matplotlib?
+import matplotlib
 
 #Import the other project filess
 import functions.game as gameModule
 import functions.ai as aiModule
 
+#a function to clear the terminal
 def clear():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 #Game engine (main program)
-    #create a game object
+#create a game object
 game = gameModule.Game()
-game.test()
+game.draw()
 
     #take in game parameters
 

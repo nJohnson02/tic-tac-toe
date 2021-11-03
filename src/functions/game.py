@@ -1,6 +1,6 @@
 class Game:
     def __init__(self):
-        self.board = [['x', 'o', 'o'],['-', '-', '-'],['x', 'x', 'o']]
+        self.board = [[],[],[]]
 
     def checkForWin(self):
         pass

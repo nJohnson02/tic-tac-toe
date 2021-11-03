@@ -1,3 +1,4 @@
+import os
 #import dependencies
     #matplotlib?
 
@@ -5,6 +6,8 @@
 import functions.game as gameModule
 import functions.ai as aiModule
 
+def clear():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 #Game engine (main program)
     #create a game object

@@ -30,13 +30,16 @@ class Game:
         pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 265, 700, 5))
         pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 532, 700, 5))
 
-        img = FONT.render('o', True, FOREGROUND_COLOR)
+        img = FONT.render('x', True, FOREGROUND_COLOR)
         window.blit(img, (50, -100))
 
 
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
+                    exit()
+                elif event.type == pygame.MOUSEBUTTONDOWN:
+                    _ = pygame.mouse.get_pos()
                     exit()
             pygame.display.update()
             clock.tick(60) 

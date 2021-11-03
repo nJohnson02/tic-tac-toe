@@ -1,5 +1,6 @@
 #Import dependencies
 import os
+import time
 import matplotlib
 
 #Import the other project filess

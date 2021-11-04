@@ -16,13 +16,15 @@ def clear():
 game = gameModule.Game()
 game.board = [['x', 'o', 'o'],['-', '-', '-'],['x', 'x', 'o']]
 
+#initialize pygame
+pygame.init()
+
 #Define constants for colors and fonts
 BACKGROUND_COLOR = '#222222'
 FOREGROUND_COLOR = '#1180E5'
 FONT = pygame.font.SysFont('arialBlack', 300)
 
-#initialize pygame
-pygame.init()
+#create window
 print(pygame.font.get_fonts())
 clock = pygame.time.Clock()
 pygame.display.set_caption('Tic Tac Toe!')

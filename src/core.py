@@ -23,9 +23,9 @@ FONT = pygame.font.SysFont('arialBlack', 300)
 clock = pygame.time.Clock()
 pygame.display.set_caption('Tic Tac Toe!')
 window = pygame.display.set_mode((800,800))
+window.fill(BACKGROUND_COLOR)
 
 #Draw the grid
-window.fill(BACKGROUND_COLOR)
 pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(265, 50, 5, 700))
 pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(532, 50, 5, 700))
 pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 265, 700, 5))

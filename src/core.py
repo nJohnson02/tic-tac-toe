@@ -50,7 +50,6 @@ while True:
             exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
             _ = pygame.mouse.get_pos()
-            exit()
     
     #Draw X or O
     img = FONT.render('x', True, FOREGROUND_COLOR)

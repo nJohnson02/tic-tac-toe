@@ -1,5 +1,4 @@
 #Import dependencies
-import os
 import time
 import matplotlib
 import pygame
@@ -7,10 +6,6 @@ import pygame
 #Import the other project filess
 import functions.game as gameModule
 import functions.ai as aiModule
-
-#A function to clear the terminal
-def clear():
-    os.system('cls' if os.name == 'nt' else 'clear')
 
 #Create a game object
 game = gameModule.Game()
@@ -36,10 +31,6 @@ pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(532, 50, 5, 700))
 pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 265, 700, 5))
 pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 532, 700, 5))
 
-#Draw X or O
-img = FONT.render('x', True, FOREGROUND_COLOR)
-window.blit(img, (50, -100))
-
 #take in game parameters
 
 #start the game (while loop)
@@ -52,11 +43,19 @@ window.blit(img, (50, -100))
 
 #MAIN LOOP
 while True:
+    
+    #Detect mouse click or closed window
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
             _ = pygame.mouse.get_pos()
             exit()
+    
+    #Draw X or O
+    img = FONT.render('x', True, FOREGROUND_COLOR)
+    window.blit(img, (50, -100))
+    
+    #Draw a new frame each time the program loops
     pygame.display.update()
     clock.tick(60) 

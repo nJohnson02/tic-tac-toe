@@ -43,12 +43,15 @@ pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 532, 700, 5))
     #check for win
 
 #MAIN LOOP
-choice=["X","O"]
+choices=["X","O"]
 game=0
 while game==0:
     start=int(input("Select the amount of players (1 or 2):"))
     if start==1:
         def random():
+            import random
+            print(random.choice(choices))
+        random()
             
         
     

@@ -3,14 +3,15 @@ import random
 import matplotlib
 import pygame
 
-def draw(letter, position):
+def draw():
     positions = [(50, -100), (300, -100), (550, -100), (50, 150), (300, 150), (550, 150), (50, 400), (300, 400), (550, 400)]
-    shape = FONT.render(letter, True, FOREGROUND_COLOR)
-    window.blit(shape, positions[position])
+    for i in range(9):
+        text = FONT.render(board[i], True, FOREGROUND_COLOR)
+        window.blit(text, positions[i])
     
 
 #Create a game board
-board = [['x', 'o', 'o'],['-', '-', '-'],['x', 'x', 'o']] #This is just for testing
+board = ['x', '', '', '', 'x', '', '', '', 'x'] #This is just for testing
 
 #Initialize pygame
 pygame.init()
@@ -63,9 +64,7 @@ while game==0:
             _ = pygame.mouse.get_pos()
     
     #Draw X or O
-    draw('x', 0)
-    draw('o', 4)
-    draw('x', 8)
+    draw()
 
     #Draw a new frame each time the program loops
     pygame.display.update()

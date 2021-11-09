@@ -3,11 +3,7 @@ import time
 import matplotlib
 import pygame
 
-#Import the other project filess
-import functions.game as gameModule
-import functions.ai as aiModule
-
-#Create a game object
+#Create a game board
 board = [['x', 'o', 'o'],['-', '-', '-'],['x', 'x', 'o']] #This is just for testing
 
 #Initialize pygame

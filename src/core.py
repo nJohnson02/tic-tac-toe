@@ -8,8 +8,7 @@ import functions.game as gameModule
 import functions.ai as aiModule
 
 #Create a game object
-game = gameModule.Game()
-game.board = [['x', 'o', 'o'],['-', '-', '-'],['x', 'x', 'o']] #This is just for testing
+board = [['x', 'o', 'o'],['-', '-', '-'],['x', 'x', 'o']] #This is just for testing
 
 #Initialize pygame
 pygame.init()

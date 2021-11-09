@@ -1,6 +1,13 @@
 #Import dependencies
+import random
 import matplotlib
 import pygame
+
+def draw(letter, position):
+    positions = [(50, -100), (300, -100), (550, -100), (50, 150), (300, 150), (550, 150), (50, 400), (300, 400), (550, 400)]
+    shape = FONT.render(letter, True, FOREGROUND_COLOR)
+    window.blit(shape, positions[position])
+    
 
 #Create a game board
 board = [['x', 'o', 'o'],['-', '-', '-'],['x', 'x', 'o']] #This is just for testing
@@ -46,9 +53,10 @@ while True:
             _ = pygame.mouse.get_pos()
     
     #Draw X or O
-    img = FONT.render('x', True, FOREGROUND_COLOR)
-    window.blit(img, (50, -100))
-    
+    draw('x', 0)
+    draw('o', 4)
+    draw('x', 8)
+
     #Draw a new frame each time the program loops
     pygame.display.update()
     clock.tick(60) 

@@ -1,5 +1,4 @@
 #Import dependencies
-import time
 import matplotlib
 import pygame
 

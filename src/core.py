@@ -27,10 +27,13 @@ def coordsToSpace(position):
         if position[0] >= SPACES[i][0][0] and position[0] < SPACES[i][1][0]:
             if position[1] >= SPACES[i][0][1] and position[1] < SPACES[i][1][1]:
                 return i
+
+#The "ai" opponent makes a move
 def aiMove():
+    #Choose a random space, if it is empty move there, if not try again.
     space = ''
     while space == '':
-        randomNumber=random.randint(0,8)
+        randomNumber = random.randint(0,8)
         if board[randomNumber]=='':
             space = randomNumber
             board[space]=AI_SYMBOL
@@ -38,13 +41,13 @@ def aiMove():
 #Create a game board
 board = ['', '', '', '', '', '', '', '', ''] #This is just for testing
 
-#Get game parameters
-while True:    
-    PLAYER_SYMBOL=input("Please choose an x or an o: ")
+#Ask the player if they want to be X or O
+PLAYER_SYMBOL = ''
+while PLAYER_SYMBOL != 'x' and PLAYER_SYMBOL != 'o':    
+    PLAYER_SYMBOL = input("Please choose an x or an o: ")
     PLAYER_SYMBOL = PLAYER_SYMBOL.lower()
-    if PLAYER_SYMBOL == 'x' or PLAYER_SYMBOL == 'o':
-        break
 
+#Set the ai to be the opposite symbol of the player
 if PLAYER_SYMBOL=="x":
     AI_SYMBOL="o"
 else:

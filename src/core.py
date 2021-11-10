@@ -14,6 +14,7 @@ def draw():
         text = FONT.render(board[i], True, FOREGROUND_COLOR)
         window.blit(text, SPACES[i])
 
+    #Update pygame to show the new changes
     pygame.display.update()
 
 #Takes in x, y coordinates and returns the space number that those coordinates are in
@@ -26,24 +27,29 @@ def coordsToSpace(position):
         if position[0] >= SPACES[i][0][0] and position[0] < SPACES[i][1][0]:
             if position[1] >= SPACES[i][0][1] and position[1] < SPACES[i][1][1]:
                 return i
-def aiComp():
-    space=""
-    while space=="":
+def aiMove():
+    space = ''
+    while space == '':
         randomNumber=random.randint(0,8)
-        if board[randomNumber]=="":
-            randomNumber=random.randint(0,8)
-            board[randomNumber]=aiSymbol
-    draw()
+        if board[randomNumber]=='':
+            space = randomNumber
+            board[space]=AI_SYMBOL
             
 #Create a game board
 board = ['', '', '', '', '', '', '', '', ''] #This is just for testing
 
-PLAYERCOUNT=int(input("Select the amount of players (1 or 2):"))
-PLAYERSYMBOL=input("Please choose an x or an o:")
-if PLAYERSYMBOL=="x":
-    aiSymbol="x"
+#Get game parameters
+while True:    
+    PLAYER_SYMBOL=input("Please choose an x or an o: ")
+    PLAYER_SYMBOL = PLAYER_SYMBOL.lower()
+    if PLAYER_SYMBOL == 'x' or PLAYER_SYMBOL == 'o':
+        break
+
+if PLAYER_SYMBOL=="x":
+    AI_SYMBOL="o"
 else:
-    aiSymbol="x"
+    AI_SYMBOL="x"
+
 #Initialize pygame
 pygame.init()
 
@@ -91,11 +97,12 @@ while game==True:
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 clickPosition = pygame.mouse.get_pos()
                 clickSpace = coordsToSpace(clickPosition)
-                board[clickSpace] = PLAYERSYMBOL
+                board[clickSpace] = PLAYER_SYMBOL
                 draw()
 
     print("Computer move.")
-    aiComp()
+    aiMove()
+    draw()
     
     
 

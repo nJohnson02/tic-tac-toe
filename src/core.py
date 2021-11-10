@@ -2,6 +2,7 @@
 import random
 import matplotlib
 import pygame
+import random
 
 #A function that draws the game board to the screen
 def draw():
@@ -13,6 +14,8 @@ def draw():
         text = FONT.render(board[i], True, FOREGROUND_COLOR)
         window.blit(text, SPACES[i])
 
+    pygame.display.update()
+
 #Takes in x, y coordinates and returns the space number that those coordinates are in
 def coordsToSpace(position):
     #A list of the coordinates of the top left and bottom right corners of each space
@@ -23,12 +26,24 @@ def coordsToSpace(position):
         if position[0] >= SPACES[i][0][0] and position[0] < SPACES[i][1][0]:
             if position[1] >= SPACES[i][0][1] and position[1] < SPACES[i][1][1]:
                 return i
-
+def aiComp():
+    space=""
+    while space=="":
+        randomNumber=random.randint(0,8)
+        if board[randomNumber]=="":
+            randomNumber=random.randint(0,8)
+            board[randomNumber]=aiSymbol
+    draw()
+            
 #Create a game board
-board = ['x', '', '', '', 'x', '', '', '', 'x'] #This is just for testing
+board = ['', '', '', '', '', '', '', '', ''] #This is just for testing
 
 PLAYERCOUNT=int(input("Select the amount of players (1 or 2):"))
-PLAYERSYMBOL=input("Please choose an X or an O:")
+PLAYERSYMBOL=input("Please choose an x or an o:")
+if PLAYERSYMBOL=="x":
+    aiSymbol="x"
+else:
+    aiSymbol="x"
 #Initialize pygame
 pygame.init()
 
@@ -63,21 +78,24 @@ pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 532, 700, 5))
 
 game=True
 while game==True:
-    print("Player one move.")
-    
-
-    
-    #Detect mouse click or closed window
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            exit()
-        elif event.type == pygame.MOUSEBUTTONDOWN:
-            clickPosition = pygame.mouse.get_pos()
-            print(coordsToSpace(clickPosition))
-    
-    #Draw X or O
-    draw()
-
     #Draw a new frame each time the program loops
     pygame.display.update()
-    clock.tick(60) 
+
+    print("Player one move.")
+    clickSpace = ''
+    while clickSpace == '':
+        #Detect mouse click or closed window
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                exit()
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                clickPosition = pygame.mouse.get_pos()
+                clickSpace = coordsToSpace(clickPosition)
+                board[clickSpace] = PLAYERSYMBOL
+                draw()
+
+    print("Computer move.")
+    aiComp()
+    
+    
+

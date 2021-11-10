@@ -13,6 +13,8 @@ def draw():
 #Create a game board
 board = ['x', '', '', '', 'x', '', '', '', 'x'] #This is just for testing
 
+PLAYERCOUNT=int(input("Select the amount of players (1 or 2):"))
+PLAYERSYMBOL=input("Please choose an X or an O:")
 #Initialize pygame
 pygame.init()
 
@@ -44,17 +46,12 @@ pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 532, 700, 5))
     #check for win
 
 #MAIN LOOP
-choices=["X","O"]
-game=0
-while game==0:
-    start=int(input("Select the amount of players (1 or 2):"))
-    if start==1:
-        def random():
-            import random
-            print(random.choice(choices))
-        random()
-            
-        
+
+game=True
+while game==True:
+    print("Player one move.")
+    
+
     
     #Detect mouse click or closed window
     for event in pygame.event.get():

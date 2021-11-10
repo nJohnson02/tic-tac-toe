@@ -3,12 +3,26 @@ import random
 import matplotlib
 import pygame
 
+#A function that draws the game board to the screen
 def draw():
-    positions = [(50, -100), (300, -100), (550, -100), (50, 150), (300, 150), (550, 150), (50, 400), (300, 400), (550, 400)]
+    #A list of the coordinates of the top left corner of each space
+    SPACES = [(50, -100), (300, -100), (550, -100), (50, 150), (300, 150), (550, 150), (50, 400), (300, 400), (550, 400)]
+    
+    #Loop through the "board" and draw every character in the right space
     for i in range(9):
         text = FONT.render(board[i], True, FOREGROUND_COLOR)
-        window.blit(text, positions[i])
+        window.blit(text, SPACES[i])
+
+#Takes in x, y coordinates and returns the space number that those coordinates are in
+def coordsToSpace(position):
+    #A list of the coordinates of the top left and bottom right corners of each space
+    SPACES = [((0, 0),(265, 265)), ((265, 0),(532, 265)), ((532, 0),(800, 265)), ((0, 265),(265, 532)), ((265, 265),(532, 532)), ((532, 265),(800, 532)), ((0, 532),(265, 800)), ((265, 532),(532, 800)), ((532, 532),(800, 800))]
     
+    #Loop through every space, check if the x coordinate is in the space, check if the y coordinate is in the space, return the space number
+    for i in range(9):
+        if position[0] >= SPACES[i][0][0] and position[0] < SPACES[i][1][0]:
+            if position[1] >= SPACES[i][0][1] and position[1] < SPACES[i][1][1]:
+                return i
 
 #Create a game board
 board = ['x', '', '', '', 'x', '', '', '', 'x'] #This is just for testing
@@ -61,7 +75,8 @@ while game==0:
         if event.type == pygame.QUIT:
             exit()
         elif event.type == pygame.MOUSEBUTTONDOWN:
-            _ = pygame.mouse.get_pos()
+            clickPosition = pygame.mouse.get_pos()
+            print(coordsToSpace(clickPosition))
     
     #Draw X or O
     draw()

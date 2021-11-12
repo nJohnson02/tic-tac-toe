@@ -81,7 +81,7 @@ def checkForWin():
 
             
 #Create a game board
-board = ['', '', '', '', '', '', '',  '', ''] #This is just for testing
+board = ['', '', '', '', '', '', '',  '', '']
 
 #Ask the player if they want to be X or O
 PLAYER_SYMBOL = ''

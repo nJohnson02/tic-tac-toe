@@ -30,7 +30,7 @@ def coordsToSpace(position):
                 return i
 
 
-# Wait for the player to make a move
+#Wait for the player to make a move
 def playerMove():
     clickSpace = ''
     while clickSpace == '':

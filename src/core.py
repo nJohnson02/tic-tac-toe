@@ -36,6 +36,7 @@ def playerMove():
         for event in pygame.event.get():
             # End program if the "x" button on pygame window is clicked
             if event.type == pygame.QUIT:
+                pygame.quit()
                 exit()
             # Detect if the player clicks on a space
             elif event.type == pygame.MOUSEBUTTONDOWN:
@@ -52,9 +53,27 @@ def aiMove():
         if board[randomNumber]=='':
             space = randomNumber
             board[space]=AI_SYMBOL
+
+def checkForWin():
+    POSSIBLEWINS=[(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+    for row in POSSIBLEWINS:
+        if board[row[0]]==PLAYER_SYMBOL and board[row[1]]==PLAYER_SYMBOL and board[row[2]]==PLAYER_SYMBOL:
+            print("Congrats, you won!")
+            return True
+        elif board[row[0]]==AI_SYMBOL and board[row[1]]==AI_SYMBOL and board[row[2]]==AI_SYMBOL:
+            print("You lost. Better luck next time.")
+            return True
+    for space in board:
+        if space=="":
+            return False
+    print("No more spaces available. Game over.")
+    return True
+
+            
+    
             
 #Create a game board
-board = ['', '', '', '', '', '', '', '', ''] #This is just for testing
+board = ['', '', '', '', '', '', '',  '', ''] #This is just for testing
 
 #Ask the player if they want to be X or O
 PLAYER_SYMBOL = ''
@@ -108,10 +127,14 @@ while game==True:
     print("Player one move.")
     playerMove()
     draw()
+    if checkForWin()==True:
+        break
 
     print("Computer move.")
     aiMove()
     draw()
-    
+    if checkForWin()==True:
+        break
     
 
+pygame.quit()

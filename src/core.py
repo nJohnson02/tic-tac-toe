@@ -2,7 +2,7 @@
 import random
 import matplotlib
 import pygame
-import random
+
 
 #A function that draws the game board to the screen
 def draw():
@@ -17,6 +17,7 @@ def draw():
     #Update pygame to show the new changes
     pygame.display.update()
 
+
 #Takes in x, y coordinates and returns the space number that those coordinates are in
 def coordsToSpace(position):
     #A list of the coordinates of the top left and bottom right corners of each space
@@ -27,6 +28,7 @@ def coordsToSpace(position):
         if position[0] >= SPACES[i][0][0] and position[0] < SPACES[i][1][0]:
             if position[1] >= SPACES[i][0][1] and position[1] < SPACES[i][1][1]:
                 return i
+
 
 # Wait for the player to make a move
 def playerMove():
@@ -44,6 +46,7 @@ def playerMove():
                 clickSpace = coordsToSpace(clickPosition)
                 board[clickSpace] = PLAYER_SYMBOL
 
+
 #The "ai" opponent makes a move
 def aiMove():
     #Choose a random space, if it is empty move there, if not try again.
@@ -54,23 +57,28 @@ def aiMove():
             space = randomNumber
             board[space]=AI_SYMBOL
 
+
+#Function that will return True if someone has won the game and Flase otherwise
 def checkForWin():
-    POSSIBLEWINS=[(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
-    for row in POSSIBLEWINS:
-        if board[row[0]]==PLAYER_SYMBOL and board[row[1]]==PLAYER_SYMBOL and board[row[2]]==PLAYER_SYMBOL:
+    #List of all possible rows of 3
+    POSSIBLE_WINS=[(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+    
+    #Loop through every possible row of 3, if all 3 spaces in any row of 3 are the same symbol, someone has won the game
+    for row in POSSIBLE_WINS:
+        if board[row[0]] == PLAYER_SYMBOL and board[row[1]] == PLAYER_SYMBOL and board[row[2]] == PLAYER_SYMBOL:
             print("Congrats, you won!")
             return True
-        elif board[row[0]]==AI_SYMBOL and board[row[1]]==AI_SYMBOL and board[row[2]]==AI_SYMBOL:
+        elif board[row[0]] == AI_SYMBOL and board[row[1]] == AI_SYMBOL and board[row[2]] == AI_SYMBOL:
             print("You lost. Better luck next time.")
             return True
+
+    #Loop through every space to check for a tie
     for space in board:
-        if space=="":
+        if space == "":
             return False
     print("No more spaces available. Game over.")
     return True
 
-            
-    
             
 #Create a game board
 board = ['', '', '', '', '', '', '',  '', ''] #This is just for testing
@@ -107,34 +115,25 @@ pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(532, 50, 5, 700))
 pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 265, 700, 5))
 pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 532, 700, 5))
 
-#take in game parameters
-
-#start the game (while loop)
-    #draw board
-    #player1 makes move
-    #check for win
-    #draw board
-    #player2 makes move
-    #check for win
 
 #MAIN LOOP
-
-game=True
-while game==True:
+while True:
     #Draw a new frame each time the program loops
     pygame.display.update()
 
-    print("Player one move.")
-    playerMove()
-    draw()
-    if checkForWin()==True:
-        break
-
+    #The computer makes a move, draw the board, check for win
     print("Computer move.")
     aiMove()
     draw()
-    if checkForWin()==True:
+    if checkForWin() == True:
+        break
+
+    #Wait for the player to make a move, draw the board, check for win
+    print("Player one move.")
+    playerMove()
+    draw()
+    if checkForWin() == True:
         break
     
-
+#Close the pygame window when the game is done
 pygame.quit()

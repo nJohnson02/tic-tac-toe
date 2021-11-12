@@ -12,7 +12,7 @@ def draw():
     #Loop through the "board" and draw every character in the right space
     for i in range(len(SPACES)):
         text = FONT.render(board[i], True, FOREGROUND_COLOR)
-        window.blit(text, SPACES[i])
+        WINDOW.blit(text, SPACES[i])
 
     #Update pygame to show the new changes
     pygame.display.update()
@@ -34,9 +34,9 @@ def coordsToSpace(position):
 def playerMove():
     clickSpace = ''
     while clickSpace == '':
-        #Detect mouse click or closed window
+        #Detect mouse click or closed WINDOW
         for event in pygame.event.get():
-            # End program if the "x" button on pygame window is clicked
+            # End program if the "x" button on pygame WINDOW is clicked
             if event.type == pygame.QUIT:
                 pygame.quit()
                 exit()
@@ -104,19 +104,19 @@ FOREGROUND_COLOR = '#13A10E'
 FONT = pygame.font.SysFont('arialBlack', 300)
 
 #Create window
-clock = pygame.time.Clock()
 pygame.display.set_caption('Tic Tac Toe!')
-window = pygame.display.set_mode((800,800))
-window.fill(BACKGROUND_COLOR)
+WINDOW = pygame.display.set_mode((800,800))
+WINDOW.fill(BACKGROUND_COLOR)
 
 #Create the grid
-pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(265, 50, 5, 700))
-pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(532, 50, 5, 700))
-pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 265, 700, 5))
-pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 532, 700, 5))
+pygame.draw.rect(WINDOW, FOREGROUND_COLOR, pygame.Rect(265, 50, 5, 700))
+pygame.draw.rect(WINDOW, FOREGROUND_COLOR, pygame.Rect(532, 50, 5, 700))
+pygame.draw.rect(WINDOW, FOREGROUND_COLOR, pygame.Rect(50, 265, 700, 5))
+pygame.draw.rect(WINDOW, FOREGROUND_COLOR, pygame.Rect(50, 532, 700, 5))
 
 #Draw the grid to the screen
 pygame.display.update()
+
 
 #MAIN LOOP
 while True:
@@ -135,5 +135,6 @@ while True:
     if checkForWin() == True:
         break
     
+
 #Close the pygame window when the game is done
 pygame.quit()

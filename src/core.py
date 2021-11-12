@@ -10,7 +10,7 @@ def draw():
     SPACES = [(50, -100), (300, -100), (550, -100), (50, 150), (300, 150), (550, 150), (50, 400), (300, 400), (550, 400)]
     
     #Loop through the "board" and draw every character in the right space
-    for i in range(9):
+    for i in range(len(SPACES)):
         text = FONT.render(board[i], True, FOREGROUND_COLOR)
         window.blit(text, SPACES[i])
 
@@ -24,7 +24,7 @@ def coordsToSpace(position):
     SPACES = [((0, 0),(265, 265)), ((265, 0),(532, 265)), ((532, 0),(800, 265)), ((0, 265),(265, 532)), ((265, 265),(532, 532)), ((532, 265),(800, 532)), ((0, 532),(265, 800)), ((265, 532),(532, 800)), ((532, 532),(800, 800))]
     
     #Loop through every space, check if the x coordinate is in the space, check if the y coordinate is in the space, return the space number
-    for i in range(9):
+    for i in range(len(SPACES)):
         if position[0] >= SPACES[i][0][0] and position[0] < SPACES[i][1][0]:
             if position[1] >= SPACES[i][0][1] and position[1] < SPACES[i][1][1]:
                 return i
@@ -61,7 +61,7 @@ def aiMove():
 #Function that will return True if someone has won the game and Flase otherwise
 def checkForWin():
     #List of all possible rows of 3
-    POSSIBLE_WINS=[(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+    POSSIBLE_WINS = [(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
     
     #Loop through every possible row of 3, if all 3 spaces in any row of 3 are the same symbol, someone has won the game
     for row in POSSIBLE_WINS:
@@ -90,17 +90,17 @@ while PLAYER_SYMBOL != 'x' and PLAYER_SYMBOL != 'o':
     PLAYER_SYMBOL = PLAYER_SYMBOL.lower()
 
 #Set the ai to be the opposite symbol of the player
-if PLAYER_SYMBOL=="x":
-    AI_SYMBOL="o"
+if PLAYER_SYMBOL == 'x':
+    AI_SYMBOL = 'o'
 else:
-    AI_SYMBOL="x"
+    AI_SYMBOL = 'x'
 
 #Initialize pygame
 pygame.init()
 
 #Define constants for colors and fonts
-BACKGROUND_COLOR = '#222222'
-FOREGROUND_COLOR = '#1180E5'
+BACKGROUND_COLOR = '#000000'
+FOREGROUND_COLOR = '#13A10E'
 FONT = pygame.font.SysFont('arialBlack', 300)
 
 #Create window

@@ -28,6 +28,21 @@ def coordsToSpace(position):
             if position[1] >= SPACES[i][0][1] and position[1] < SPACES[i][1][1]:
                 return i
 
+# Wait for the player to make a move
+def playerMove():
+    clickSpace = ''
+    while clickSpace == '':
+        #Detect mouse click or closed window
+        for event in pygame.event.get():
+            # End program if the "x" button on pygame window is clicked
+            if event.type == pygame.QUIT:
+                exit()
+            # Detect if the player clicks on a space
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                clickPosition = pygame.mouse.get_pos()
+                clickSpace = coordsToSpace(clickPosition)
+                board[clickSpace] = PLAYER_SYMBOL
+
 #The "ai" opponent makes a move
 def aiMove():
     #Choose a random space, if it is empty move there, if not try again.
@@ -91,17 +106,8 @@ while game==True:
     pygame.display.update()
 
     print("Player one move.")
-    clickSpace = ''
-    while clickSpace == '':
-        #Detect mouse click or closed window
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                exit()
-            elif event.type == pygame.MOUSEBUTTONDOWN:
-                clickPosition = pygame.mouse.get_pos()
-                clickSpace = coordsToSpace(clickPosition)
-                board[clickSpace] = PLAYER_SYMBOL
-                draw()
+    playerMove()
+    draw()
 
     print("Computer move.")
     aiMove()

@@ -109,17 +109,17 @@ pygame.display.set_caption('Tic Tac Toe!')
 window = pygame.display.set_mode((800,800))
 window.fill(BACKGROUND_COLOR)
 
-#Draw the grid
+#Create the grid
 pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(265, 50, 5, 700))
 pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(532, 50, 5, 700))
 pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 265, 700, 5))
 pygame.draw.rect(window, FOREGROUND_COLOR, pygame.Rect(50, 532, 700, 5))
 
+#Draw the grid to the screen
+pygame.display.update()
 
 #MAIN LOOP
 while True:
-    #Draw a new frame each time the program loops
-    pygame.display.update()
 
     #The computer makes a move, draw the board, check for win
     print("Computer move.")

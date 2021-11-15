@@ -99,7 +99,7 @@ else:
 pygame.init()
 
 #Define constants for colors and fonts
-BACKGROUND_COLOR = '#000000'
+BACKGROUND_COLOR = '#000F00'
 FOREGROUND_COLOR = '#13A10E'
 FONT = pygame.font.SysFont('arialBlack', 300)
 

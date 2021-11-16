@@ -29,6 +29,28 @@ def coordsToSpace(position):
             if position[1] >= SPACES[i][0][1] and position[1] < SPACES[i][1][1]:
                 return i
 
+        
+#Function that will return True if someone has won the game and Flase otherwise
+def checkForWin():
+    #List of all possible rows of 3
+    POSSIBLE_WINS = [(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+    
+    #Loop through every possible row of 3, if all 3 spaces in any row of 3 are the same symbol, someone has won the game
+    for row in POSSIBLE_WINS:
+        if board[row[0]] == PLAYER_SYMBOL and board[row[1]] == PLAYER_SYMBOL and board[row[2]] == PLAYER_SYMBOL:
+            print("Congrats, you won!")
+            return True
+        elif board[row[0]] == AI_SYMBOL and board[row[1]] == AI_SYMBOL and board[row[2]] == AI_SYMBOL:
+            print("You lost. Better luck next time.")
+            return True
+
+    #Loop through every space to check for a tie
+    for space in board:
+        if space == "":
+            return False
+    print("No more spaces available. Game over.")
+    return True
+
 
 #Wait for the player to make a move
 def playerMove():
@@ -56,28 +78,6 @@ def aiMove():
         if board[randomNumber]=='':
             space = randomNumber
             board[space]=AI_SYMBOL
-
-
-#Function that will return True if someone has won the game and Flase otherwise
-def checkForWin():
-    #List of all possible rows of 3
-    POSSIBLE_WINS = [(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
-    
-    #Loop through every possible row of 3, if all 3 spaces in any row of 3 are the same symbol, someone has won the game
-    for row in POSSIBLE_WINS:
-        if board[row[0]] == PLAYER_SYMBOL and board[row[1]] == PLAYER_SYMBOL and board[row[2]] == PLAYER_SYMBOL:
-            print("Congrats, you won!")
-            return True
-        elif board[row[0]] == AI_SYMBOL and board[row[1]] == AI_SYMBOL and board[row[2]] == AI_SYMBOL:
-            print("You lost. Better luck next time.")
-            return True
-
-    #Loop through every space to check for a tie
-    for space in board:
-        if space == "":
-            return False
-    print("No more spaces available. Game over.")
-    return True
 
             
 #Create a game board

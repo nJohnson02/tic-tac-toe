@@ -1,6 +1,6 @@
 #Import dependencies
 import random
-import matplotlib
+import matplotlib.pyplot as plt
 import pygame
 
 
@@ -138,3 +138,17 @@ while True:
 
 #Close the pygame window when the game is done
 pygame.quit()
+
+#Stores player progress in separate file
+def playerProgress():
+    f=open("player_progress.txt", "w+")
+    if checkForWin
+
+#Generates a pie chart that shows the wins, losses, and draws of the player
+labels=["Wins","Draws","Losses"]
+sizes=[10,30,5]
+colors=["#f6ea7bff","#ffba52ff","#e683a9ff"]
+plt.pie(sizes, labels=labels, colors=colors)
+plt.axis("equal")
+plt.title("Player Progress")
+plt.show()

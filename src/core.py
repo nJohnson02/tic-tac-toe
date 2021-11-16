@@ -3,6 +3,13 @@ import random
 import matplotlib.pyplot as plt
 import pygame
 
+#Stores player progress in separate file
+f=open("player_progress.txt", "r")
+playerWins=f.readlines()
+if playerWins==[]:
+    playerWins=["0","0","0"]
+f.close()
+f=open("player_progress.txt", "w+")
 
 #A function that draws the game board to the screen
 def draw():
@@ -39,15 +46,19 @@ def checkForWin():
     for row in POSSIBLE_WINS:
         if board[row[0]] == PLAYER_SYMBOL and board[row[1]] == PLAYER_SYMBOL and board[row[2]] == PLAYER_SYMBOL:
             print("Congrats, you won!")
+            playerWins[0]=str(int(playerWins[0])+1)
             return True
         elif board[row[0]] == AI_SYMBOL and board[row[1]] == AI_SYMBOL and board[row[2]] == AI_SYMBOL:
             print("You lost. Better luck next time.")
+            playerWins[1]=str(int(playerWins[1])+1)
             return True
-
+            
+            
     #Loop through every space to check for a tie
     for space in board:
         if space == "":
             return False
+    playerWins[2]=str(int(playerWins[2])+1)
     print("No more spaces available. Game over.")
     return True
 
@@ -139,16 +150,17 @@ while True:
 #Close the pygame window when the game is done
 pygame.quit()
 
-#Stores player progress in separate file
-def playerProgress():
-    f=open("player_progress.txt", "w+")
-    if checkForWin
 
 #Generates a pie chart that shows the wins, losses, and draws of the player
-labels=["Wins","Draws","Losses"]
+labels=["Wins","Losses","Draws"]
 sizes=[10,30,5]
 colors=["#f6ea7bff","#ffba52ff","#e683a9ff"]
 plt.pie(sizes, labels=labels, colors=colors)
 plt.axis("equal")
 plt.title("Player Progress")
 plt.show()
+
+print(playerWins)
+for i in range(3):
+    f.write(playerWins[i])
+f.close()

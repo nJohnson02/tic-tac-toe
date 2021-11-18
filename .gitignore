@@ -1,5 +1,5 @@
 #Game save file
-src/player_progress.txt
+*player_progress.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

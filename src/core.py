@@ -40,26 +40,26 @@ def checkForWin():
     for row in POSSIBLE_WINS:
         if board[row[0]] == PLAYER_SYMBOL and board[row[1]] == PLAYER_SYMBOL and board[row[2]] == PLAYER_SYMBOL:
             print("Congrats, you won!")
-            playerStats[0]=str(int(playerStats[0])+1)
+            playerStats[0]=playerStats[0]+1
             return True
         elif board[row[0]] == AI_SYMBOL and board[row[1]] == AI_SYMBOL and board[row[2]] == AI_SYMBOL:
             print("You lost. Better luck next time.")
-            playerStats[1]=str(int(playerStats[1])+1)
+            playerStats[1]=playerStats[1]+1
             return True
             
     #Loop through every space to check for a tie
     for space in board:
         if space == "":
             return False
-    playerStats[2]=str(int(playerStats[2])+1)
+    playerStats[2]=playerStats[2]+1
     print("No more spaces available. Game over.")
     return True
 
 
 #Wait for the player to make a move
 def playerMove():
-    clickSpace = ''
-    while clickSpace == '':
+    waiting=True
+    while waiting:
         #Detect mouse click or closed WINDOW
         for event in pygame.event.get():
             # End program if the "x" button on pygame WINDOW is clicked
@@ -70,8 +70,9 @@ def playerMove():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 clickPosition = pygame.mouse.get_pos()
                 clickSpace = coordsToSpace(clickPosition)
-                board[clickSpace] = PLAYER_SYMBOL
-
+                if board[clickSpace]=='':
+                    waiting=False
+    board[clickSpace] = PLAYER_SYMBOL
 
 #The "ai" opponent makes a move
 def aiMove():
@@ -90,11 +91,14 @@ try:
     playerStats = f.read().split(',')
     f.close()
 except:
-    playerStats = ['0', '0', '0']
+    playerStats = [0, 0, 0]
+    
+for i in range(len(playerStats)):
+    playerStats[i]=int(playerStats[i])
 
 #Don't break everything if the file is empty
 if len(playerStats) != 3:
-    playerStats = ['0', '0', '0']
+    playerStats = [0, 0, 0]
 
             
 #Create a game board
@@ -156,17 +160,16 @@ while True:
 #Close the pygame window when the game is done
 pygame.quit()
 
+#Writes the updated list of wins, losses, and ties to the file
+f = open("player_progress.txt", "w+")
+f.write(str(playerStats[0]) +','+ str(playerStats[1]) +','+ str(playerStats[2]))
+f.close()
 
 #Generates a pie chart that shows the wins, losses, and draws of the player
 labels=["Wins","Losses","Draws"]
-sizes=[10,30,5]
-colors=["#f6ea7bff","#ffba52ff","#e683a9ff"]
+sizes=playerStats
+colors=["#f6ea7bff","#e683a9ff","#ffba52ff"]
 plt.pie(sizes, labels=labels, colors=colors)
 plt.axis("equal")
 plt.title("Player Progress")
 plt.show()
-
-#Writes the updated list of wins, losses, and ties to the file
-f = open("player_progress.txt", "w")
-f.write(playerStats[0] +','+ playerStats[1] +','+ playerStats[2])
-f.close()

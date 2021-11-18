@@ -1,3 +1,10 @@
+"""
+Tic-Tac-Toe
+By: Nathan, Margret, Jasmine, and Madison
+
+A python tic-tac-toe game using pygame!
+
+"""
 
 #Import dependencies
 import random
@@ -58,7 +65,7 @@ def checkForWin():
 
 #Wait for the player to make a move
 def playerMove():
-    waiting=True
+    waiting = True
     while waiting:
         #Detect mouse click or closed WINDOW
         for event in pygame.event.get():
@@ -70,9 +77,13 @@ def playerMove():
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 clickPosition = pygame.mouse.get_pos()
                 clickSpace = coordsToSpace(clickPosition)
+                #Make sure the clicked space is empty
                 if board[clickSpace]=='':
                     waiting=False
+    
+    #Put the player's peice in the clicked space
     board[clickSpace] = PLAYER_SYMBOL
+
 
 #The "ai" opponent makes a move
 def aiMove():
@@ -92,14 +103,14 @@ try:
     f.close()
 except:
     playerStats = [0, 0, 0]
-    
-for i in range(len(playerStats)):
-    playerStats[i]=int(playerStats[i])
 
 #Don't break everything if the file is empty
 if len(playerStats) != 3:
     playerStats = [0, 0, 0]
 
+#Make sure the list contains only integers
+for i in range(len(playerStats)):
+    playerStats[i]=int(playerStats[i])
             
 #Create a game board
 board = ['', '', '', '', '', '', '',  '', '']
@@ -166,9 +177,9 @@ f.write(str(playerStats[0]) +','+ str(playerStats[1]) +','+ str(playerStats[2]))
 f.close()
 
 #Generates a pie chart that shows the wins, losses, and draws of the player
-labels=["Wins","Losses","Draws"]
-sizes=playerStats
-colors=["#f6ea7bff","#e683a9ff","#ffba52ff"]
+labels = ["Wins","Losses","Draws"]
+sizes = playerStats
+colors = ["#f6ea7bff","#e683a9ff","#ffba52ff"]
 plt.pie(sizes, labels=labels, colors=colors)
 plt.axis("equal")
 plt.title("Player Progress")

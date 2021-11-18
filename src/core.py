@@ -47,7 +47,6 @@ def checkForWin():
             playerWins[1]=str(int(playerWins[1])+1)
             return True
             
-            
     #Loop through every space to check for a tie
     for space in board:
         if space == "":

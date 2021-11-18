@@ -40,18 +40,18 @@ def checkForWin():
     for row in POSSIBLE_WINS:
         if board[row[0]] == PLAYER_SYMBOL and board[row[1]] == PLAYER_SYMBOL and board[row[2]] == PLAYER_SYMBOL:
             print("Congrats, you won!")
-            playerWins[0]=str(int(playerWins[0])+1)
+            playerStats[0]=str(int(playerStats[0])+1)
             return True
         elif board[row[0]] == AI_SYMBOL and board[row[1]] == AI_SYMBOL and board[row[2]] == AI_SYMBOL:
             print("You lost. Better luck next time.")
-            playerWins[1]=str(int(playerWins[1])+1)
+            playerStats[1]=str(int(playerStats[1])+1)
             return True
             
     #Loop through every space to check for a tie
     for space in board:
         if space == "":
             return False
-    playerWins[2]=str(int(playerWins[2])+1)
+    playerStats[2]=str(int(playerStats[2])+1)
     print("No more spaces available. Game over.")
     return True
 
@@ -84,17 +84,17 @@ def aiMove():
             board[space]=AI_SYMBOL
 
 
-#If the file exists, read it into playerWins list, otherwise set it to '0','0','0'
+#If the file exists, read it into playerStats list, otherwise set it to '0','0','0'
 try:
     f = open("player_progress.txt", "r")
-    playerWins = f.read().split(',')
+    playerStats = f.read().split(',')
     f.close()
 except:
-    playerWins = ['0', '0', '0']
+    playerStats = ['0', '0', '0']
 
 #Don't break everything if the file is empty
-if len(playerWins) != 3:
-    playerWins = ['0', '0', '0']
+if len(playerStats) != 3:
+    playerStats = ['0', '0', '0']
 
             
 #Create a game board
@@ -168,5 +168,5 @@ plt.show()
 
 #Writes the updated list of wins, losses, and ties to the file
 f = open("player_progress.txt", "w")
-f.write(playerWins[0] +','+ playerWins[1] +','+ playerWins[2])
+f.write(playerStats[0] +','+ playerStats[1] +','+ playerStats[2])
 f.close()

@@ -1,15 +1,9 @@
+
 #Import dependencies
 import random
 import matplotlib.pyplot as plt
 import pygame
 
-#Stores player progress in separate file
-f=open("player_progress.txt", "r")
-playerWins=f.readlines()
-if playerWins==[]:
-    playerWins=["0","0","0"]
-f.close()
-f=open("player_progress.txt", "w+")
 
 #A function that draws the game board to the screen
 def draw():
@@ -90,6 +84,19 @@ def aiMove():
             space = randomNumber
             board[space]=AI_SYMBOL
 
+
+#If the file exists, read it into playerWins list, otherwise set it to '0','0','0'
+try:
+    f = open("player_progress.txt", "r")
+    playerWins = f.read().split(',')
+    f.close()
+except:
+    playerWins = ['0', '0', '0']
+
+#Don't break everything if the file is empty
+if len(playerWins) != 3:
+    playerWins = ['0', '0', '0']
+
             
 #Create a game board
 board = ['', '', '', '', '', '', '',  '', '']
@@ -160,7 +167,7 @@ plt.axis("equal")
 plt.title("Player Progress")
 plt.show()
 
-print(playerWins)
-for i in range(3):
-    f.write(playerWins[i])
+#Writes the updated list of wins, losses, and ties to the file
+f = open("player_progress.txt", "w")
+f.write(playerWins[0] +','+ playerWins[1] +','+ playerWins[2])
 f.close()

@@ -34,7 +34,7 @@ def coordsToSpace(position):
 #Function that will return True if someone has won the game and Flase otherwise
 def checkForWin():
     #List of all possible rows of 3
-    POSSIBLE_WINS = [(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+    POSSIBLE_WINS = [(0,1,2), (3,4,5), (6,7,8), (0,3,6), (1,4,7), (2,5,8), (0,4,8), (2,4,6)]
     
     #Loop through every possible row of 3, if all 3 spaces in any row of 3 are the same symbol, someone has won the game
     for row in POSSIBLE_WINS:

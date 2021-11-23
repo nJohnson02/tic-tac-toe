@@ -8,9 +8,8 @@ A python tic-tac-toe game using pygame!
 
 #Import dependencies
 import random
-import matplotlib.pyplot as plt
 import pygame
-
+import matplotlib.pyplot as plt
 
 #A function that draws the game board to the screen
 def draw():
